@@ -3,28 +3,10 @@ version: 2
 sources:
   - name: jaffle_shop #--this source logical name , in absence of schema specifier will consider this as schema
     description: A replica of the postgres database
-    database: raw # this is source db, as long role has access to this db , dont need special mention in profile
-    schema: TPCH_SF100
+    database: ANALYTICS # this is source db, as long role has access to this db , dont need special mention in profile
+    schema: DEV
     tables:
-      - name: customers
+      - name: test1
         columns:
-          - name: id
-            tests:
-              - not_null
-              - unique
-      - name: orders
-        description: One record per order
-        loaded_at_field: _etl_loaded_at
-        freshness:
-          warn_after: {count: 12, period: hour}
-          error_after: {count: 24, period: hour}
-        columns:
-          - name: id
-            tests:
-              - unique
-              - not_null
-          - name: status
-            description: "NA"
-            tests:
-              - accepted_values:
-                  values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+          - name: a
+  
