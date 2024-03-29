@@ -9,7 +9,15 @@ def gen_file(df):
         file_name = f"{row['employee_name']}.param"
         file_path = os.path.join(row['employee_path'], file_name)
         
+        # Check if the file already exists
+        if os.path.exists(file_path):
+            # Delete the existing file
+            os.remove(file_path)
+            print(f"Deleted existing file: {file_path}")
+        
+        # Generate the new file
         with open(file_path, 'w') as f:
             f.write(f"[{row['employee_name']}]\n")
             f.write(f"first_name={row['employee_first_name']}\n")
             f.write(f"last_name={row['employee_last_name']}")
+        print(f"Generated new file: {file_path}")
